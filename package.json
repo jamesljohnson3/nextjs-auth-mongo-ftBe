@@ -10,7 +10,6 @@
   },
   "author": "Faraz Patankar",
   "dependencies": {
-    "commandbar": "^1.7.3",
     "mongodb": "^3.6.6",
     "next": "^12.1.0",
     "next-auth": "latest",
