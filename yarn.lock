@@ -71,6 +71,13 @@
   dependencies:
     csstype "3.1.1"
 
+"@fingerprintjs/fingerprintjs-pro@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@fingerprintjs/fingerprintjs-pro/-/fingerprintjs-pro-3.8.2.tgz#91a642c7a8555157acdf7e30ed085e754d8879b2"
+  integrity sha512-cccPaHhzt2AnXbUEdpMW4/19eous5/WJhNlawq5BJKmmGSHJzjjb0kkNXgC0QlFll1YsoqLAxmGLOYRVVfmTBA==
+  dependencies:
+    tslib "^2.4.1"
+
 "@knocklabs/client@^0.8.7":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@knocklabs/client/-/client-0.8.8.tgz#637f4ef152f7bdf657a423e7a48198b6d00a77f8"

@@ -11,6 +11,7 @@
   "author": "Now",
   "dependencies": {
     "@clerk/nextjs": "^4.11.1",
+    "@fingerprintjs/fingerprintjs-pro": "^3.8.2",
     "@knocklabs/react-notification-feed": "^0.8.4",
     "mongodb": "^3.6.6",
     "next": "^13.2.1",
