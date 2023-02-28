@@ -1,59 +1,44 @@
 import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { useState } from 'react'
 import styles from './header.module.css'
 
-// The approach used in this component shows how to built a sign in and sign out
-// component that works on pages which support both client and server side
-// rendering, and avoids any flash incorrect content on initial page load.
-export default function Header () {
-  const [ session, loading ] = useSession()
-  
+export default function Header() {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSignIn = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/test', {
+        method: 'POST'
+      })
+      if (response.ok) {
+        // handle success
+      } else {
+        throw new Error('Failed to send POST request')
+      }
+    } catch (error) {
+      console.error(error)
+      // handle error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <header>
-      <noscript>
-        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
-      </noscript>
       <div className={styles.signedInStatus}>
-        <p className={`nojs-show ${(!session && loading) ? styles.loading : styles.loaded}`}>
-          {!session && <>
-            <span className={styles.notSignedInText}>You are not signed in</span>
-            <a
-                href={`/api/auth/signin`}
-                className={styles.buttonPrimary}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signIn()
-                }}
-              >
-                Sign in
-              </a>
-          </>}
-          {session && <>
-            {session.user.image && <span style={{backgroundImage: `url(${session.user.image})` }} className={styles.avatar}/>}
-            <span className={styles.signedInText}>
-              <small>Signed in as</small><br/>
-              <strong>{session.user.email || session.user.name}</strong>
-              </span>
-            <a
-                href={`/api/auth/signout`}
-                className={styles.button}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                }}
-              >
-                Sign out
-              </a>
-          </>}
+        <p className={styles.loading}>
+          {isLoading && <span>Loading...</span>}
         </p>
       </div>
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}><Link href="/"><a>Home</a></Link></li>
-          <li className={styles.navItem}><Link href="/client"><a>Client</a></Link></li>
-          <li className={styles.navItem}><Link href="/server"><a>Server</a></Link></li>
-          <li className={styles.navItem}><Link href="/protected"><a>Protected</a></Link></li>
-          <li className={styles.navItem}><Link href="/api-example"><a>API</a></Link></li>
+          <li className={styles.navItem}>
+            <button className={styles.buttonPrimary} onClick={handleSignIn} disabled={isLoading}>
+              Sign in
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
