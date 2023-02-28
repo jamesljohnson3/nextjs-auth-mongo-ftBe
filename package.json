@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start --port ${PORT-3000}"
   },
-  "author": "Faraz Patankar",
+  "author": "Now",
   "dependencies": {
     "mongodb": "^3.6.6",
     "next": "^12.1.0",
